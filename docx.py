@@ -400,7 +400,7 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto'
     return table
 
 
-def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelheight=None, nochangeaspect=True, nochangearrowheads=True):
+def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelheight=None, nochangeaspect=True, nochangearrowheads=True, jc='left'):
     '''Take a relationshiplist, picture file name, and return a paragraph containing the image
     and an updated relationshiplist'''
     # http://openxmldeveloper.org/articles/462.aspx
@@ -501,6 +501,10 @@ def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelhei
     run = makeelement('r')
     run.append(drawing)
     paragraph = makeelement('p')
+    pPr = makeelement('pPr')
+    pJc = makeelement('jc', attributes={'val': jc})
+    pPr.append(pJc)
+    paragraph.append(pPr)
     paragraph.append(run)
     return relationshiplist, paragraph
 
