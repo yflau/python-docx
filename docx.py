@@ -266,7 +266,7 @@ def heading(headingtext, headinglevel, lang='en'):
     return paragraph
 
 
-def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto', borders={}, celstyle=None):
+def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto', borders={}, celstyle=None, jc='left'):
     """
     Return a table element based on specified parameters
 
@@ -312,6 +312,8 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto'
     tableprops.append(tablestyle)
     tablewidth = makeelement('tblW', attributes={'w': str(tblw), 'type': str(twunit)})
     tableprops.append(tablewidth)
+    pJc = makeelement('jc', attributes={'val': jc})
+    tableprops.append(pJc)
     if len(borders.keys()):
         tableborders = makeelement('tblBorders')
         for b in ['top', 'left', 'bottom', 'right', 'insideH', 'insideV']:
